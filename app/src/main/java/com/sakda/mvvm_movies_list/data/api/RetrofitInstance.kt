@@ -8,10 +8,12 @@ class RetrofitInstance {
     companion object {
         private val api_url = "https://api.themoviedb.org/3/"
 
-        val api = Retrofit.Builder()
-            .baseUrl(api_url)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(MovieApi::class.java)
+        fun getAPI(): MovieApi {
+            return Retrofit.Builder()
+                .baseUrl(api_url)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+                .create(MovieApi::class.java)
+        }
     }
 }
