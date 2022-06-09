@@ -33,11 +33,6 @@ class MainActivity : AppCompatActivity() {
 
         initViewModel()
 
-        movieViewModel.movies.observe(this,Observer {
-            val name = it.movies[0].original_title
-            Log.i("movie name", name)
-        })
-
     }
 
     private fun initViewModel(){
