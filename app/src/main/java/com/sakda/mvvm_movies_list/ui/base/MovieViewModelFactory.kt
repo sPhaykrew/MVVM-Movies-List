@@ -11,6 +11,6 @@ class MovieViewModelFactory(private val repository: Repository) : ViewModelProvi
             return MainViewModel(repository) as T
         }
 
-        throw IllegalAccessException("Unknow View model Class")
+        throw IllegalAccessException("Unknown View model Class")
     }
 }
