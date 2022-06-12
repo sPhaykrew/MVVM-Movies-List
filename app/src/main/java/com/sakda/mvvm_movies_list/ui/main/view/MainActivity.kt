@@ -10,13 +10,13 @@ import com.sakda.mvvm_movies_list.data.api.RetrofitInstance
 import com.sakda.mvvm_movies_list.data.repository.Repository
 import com.sakda.mvvm_movies_list.databinding.ActivityMainBinding
 import com.sakda.mvvm_movies_list.ui.base.MovieViewModelFactory
-import com.sakda.mvvm_movies_list.ui.main.viewmodel.MainViewModel
+import com.sakda.mvvm_movies_list.ui.main.viewmodel.MovieViewModel
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mainBinding: ActivityMainBinding
     private lateinit var navController : NavController
-    private lateinit var movieViewModel: MainViewModel
+    private lateinit var movieViewModel: MovieViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     private fun initViewModel(){
         val repository = Repository(RetrofitInstance.getAPI())
         val factory = MovieViewModelFactory(repository)
-        movieViewModel = ViewModelProvider(this,factory)[MainViewModel::class.java]
+        movieViewModel = ViewModelProvider(this,factory)[MovieViewModel::class.java]
     }
 
 }

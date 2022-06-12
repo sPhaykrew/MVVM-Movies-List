@@ -1,5 +1,6 @@
 package com.sakda.mvvm_movies_list.ui.main.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -13,7 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class MainViewModel(private val repository: Repository) : ViewModel() {
+class MovieViewModel(private val repository: Repository) : ViewModel() {
 
     val movies : MutableLiveData<MoviesList> = MutableLiveData()
     val moviesAction : MutableLiveData<MoviesList> = MutableLiveData()

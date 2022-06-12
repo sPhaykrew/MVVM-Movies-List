@@ -13,3 +13,13 @@ fun ImageView.loadImage(uri: String?) {
         .load(uri)
         .into(this)
 }
+
+fun ImageView.loadImageResize(uri: String?) {
+    val options = RequestOptions()
+        .error(R.mipmap.ic_launcher_round)
+    Glide.with(this.context)
+        .setDefaultRequestOptions(options)
+        .load(uri)
+        .override(350,700)
+        .into(this)
+}

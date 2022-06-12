@@ -1,11 +1,15 @@
 package com.sakda.mvvm_movies_list.data.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Movies(
     val adult: Boolean,
     val backdrop_path: String,
     val genre_ids: List<Int>,
     val id: Int,
-    val media_type: String,
+//    val media_type: String,
     val original_language: String,
     val original_title: String,
     val overview: String,
@@ -16,4 +20,4 @@ data class Movies(
     val video: Boolean,
     val vote_average: Double,
     val vote_count: Int
-)
+) : Parcelable

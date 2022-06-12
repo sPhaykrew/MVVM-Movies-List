@@ -1,6 +1,8 @@
 package com.sakda.mvvm_movies_list.ui.main.view
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +14,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.sakda.mvvm_movies_list.databinding.FragmentMainBinding
 import com.sakda.mvvm_movies_list.ui.adapter.RecyclerViewAdapterMovies
 import com.sakda.mvvm_movies_list.ui.adapter.RecyclerViewAdapter_Highlight
-import com.sakda.mvvm_movies_list.ui.main.viewmodel.MainViewModel
+import com.sakda.mvvm_movies_list.ui.main.viewmodel.MovieViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class MainFragment : Fragment() {
 
@@ -22,7 +28,7 @@ class MainFragment : Fragment() {
     private lateinit var recyclerviewAdapterDrama : RecyclerViewAdapterMovies
     private lateinit var recyclerviewAdapterHorror : RecyclerViewAdapterMovies
     private lateinit var recyclerviewAdapterAnime : RecyclerViewAdapterMovies
-    private val mainViewModel : MainViewModel by activityViewModels()
+    private val movieViewModel : MovieViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +38,7 @@ class MainFragment : Fragment() {
 
         initRecyclerView()
         observeData()
+//        autoScroll()
 
         return fragmentMainBinding.root
     }
@@ -53,48 +60,64 @@ class MainFragment : Fragment() {
         fragmentMainBinding.recyclerviewAnime.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun observeData(){
-        mainViewModel.movies.observe(viewLifecycleOwner, Observer {
+        movieViewModel.movies.observe(viewLifecycleOwner, Observer {
             recyclerViewAdapterHighlight.setItem(it.movies)
             fragmentMainBinding.recyclerviewHighlight.adapter = recyclerViewAdapterHighlight
             recyclerViewAdapterHighlight.notifyDataSetChanged()
         })
 
-        mainViewModel.moviesAction.observe(viewLifecycleOwner,Observer{
+        movieViewModel.moviesAction.observe(viewLifecycleOwner,Observer{
             recyclerviewAdapterAction.setItem(it.movies)
             fragmentMainBinding.recyclerviewAction.adapter = recyclerviewAdapterAction
             recyclerviewAdapterAction.notifyDataSetChanged()
         })
 
-        mainViewModel.moviesDrama.observe(viewLifecycleOwner,Observer{
+        movieViewModel.moviesDrama.observe(viewLifecycleOwner,Observer{
             recyclerviewAdapterDrama.setItem(it.movies)
             fragmentMainBinding.recyclerviewDrama.adapter = recyclerviewAdapterDrama
             recyclerviewAdapterDrama.notifyDataSetChanged()
         })
 
-        mainViewModel.moviesHorror.observe(viewLifecycleOwner,Observer{
+        movieViewModel.moviesHorror.observe(viewLifecycleOwner,Observer{
             recyclerviewAdapterHorror.setItem(it.movies)
             fragmentMainBinding.recyclerviewHorror.adapter = recyclerviewAdapterHorror
             recyclerviewAdapterHorror.notifyDataSetChanged()
         })
 
-        mainViewModel.moviesAnime.observe(viewLifecycleOwner,Observer{
+        movieViewModel.moviesAnime.observe(viewLifecycleOwner,Observer{
             recyclerviewAdapterAnime.setItem(it.movies)
             fragmentMainBinding.recyclerviewAnime.adapter = recyclerviewAdapterAnime
             recyclerviewAdapterAnime.notifyDataSetChanged()
         })
 
-        mainViewModel.errorMessage.observe(viewLifecycleOwner, Observer {
+        movieViewModel.errorMessage.observe(viewLifecycleOwner, Observer {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
 
-        mainViewModel.loading.observe(viewLifecycleOwner, Observer {
+        movieViewModel.loading.observe(viewLifecycleOwner, Observer {
             if (it) {
                 fragmentMainBinding.progressBar.visibility = View.VISIBLE
             } else {
                 fragmentMainBinding.progressBar.visibility = View.GONE
             }
         })
+    }
+
+    private fun autoScroll(){
+        CoroutineScope(Dispatchers.Main).launch {
+            while (true){
+                val position = (fragmentMainBinding.recyclerviewHighlight.layoutManager as? LinearLayoutManager)?.findFirstVisibleItemPosition()!!
+                if(position == recyclerViewAdapterHighlight.itemCount - 1) {
+                    fragmentMainBinding.recyclerviewHighlight.smoothScrollToPosition(0)
+                    delay(6000L)
+                } else {
+                    fragmentMainBinding.recyclerviewHighlight.smoothScrollToPosition(position + 1)
+                    delay(6000L)
+                }
+            }
+        }
     }
 
 }
