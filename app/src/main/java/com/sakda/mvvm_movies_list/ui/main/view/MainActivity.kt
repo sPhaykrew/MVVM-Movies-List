@@ -2,15 +2,10 @@ package com.sakda.mvvm_movies_list.ui.main.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.core.graphics.green
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.sakda.mvvm_movies_list.R
-import com.sakda.mvvm_movies_list.data.api.MovieApi
 import com.sakda.mvvm_movies_list.data.api.RetrofitInstance
 import com.sakda.mvvm_movies_list.data.repository.Repository
 import com.sakda.mvvm_movies_list.databinding.ActivityMainBinding

@@ -7,4 +7,6 @@ class Repository(private val movieApi: MovieApi) {
 
     suspend fun getMovies() = movieApi.getMovies()
 
+    suspend fun getMoviesCategory(genresID : Int) = movieApi.getCategory(genresID)
+
 }

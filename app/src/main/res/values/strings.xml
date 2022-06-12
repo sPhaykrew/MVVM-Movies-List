@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">MVVM-Movies-List</string>
+    <string name="header_trending">Trending Now</string>
+    <string name="title">Title</string>
+    <string name="Action">Action</string>
+    <string name="Drama">Drama</string>
+    <string name="Horror">Horror</string>
+    <string name="Anime">Anime</string>
+
 </resources>
