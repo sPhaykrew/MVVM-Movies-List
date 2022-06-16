@@ -1,5 +1,6 @@
 package com.sakda.mvvm_movies_list.ui.main.view
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ class MovieDetails : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         fragmentMovieDetailsBinding = FragmentMovieDetailsBinding.inflate(inflater,container,false)
+
 
         return fragmentMovieDetailsBinding.root
     }

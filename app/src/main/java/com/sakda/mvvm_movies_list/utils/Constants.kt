@@ -5,6 +5,7 @@ class Constants {
         const val BASE_URL = "https://api.themoviedb.org/3/"
         const val GET_MOVIES = "movie/popular?api_key=848b8839c1d5acdc50f7dba88178e0c5&language=en-US&page=1"
         const val BASE_IMAGE = "https://image.tmdb.org/t/p/w500"
+        const val GET_VIDEO = "https://api.themoviedb.org/3/movie/{movie_id}/videos?api_key=848b8839c1d5acdc50f7dba88178e0c5&language=en-US"
         //Category
         const val Action = 28
         const val Adventure = 12

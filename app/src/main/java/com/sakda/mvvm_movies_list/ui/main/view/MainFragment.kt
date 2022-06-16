@@ -2,7 +2,6 @@ package com.sakda.mvvm_movies_list.ui.main.view
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -38,7 +37,7 @@ class MainFragment : Fragment() {
 
         initRecyclerView()
         observeData()
-//        autoScroll()
+        autoScroll()
 
         return fragmentMainBinding.root
     }
