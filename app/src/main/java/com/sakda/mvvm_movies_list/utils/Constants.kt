@@ -2,11 +2,13 @@ package com.sakda.mvvm_movies_list.utils
 
 class Constants {
     companion object {
+        //API movies
         const val BASE_URL = "https://api.themoviedb.org/3/"
         const val GET_MOVIES = "movie/popular?api_key=848b8839c1d5acdc50f7dba88178e0c5&language=en-US&page=1"
         const val BASE_IMAGE = "https://image.tmdb.org/t/p/w500"
         const val GET_VIDEO = "https://api.themoviedb.org/3/movie/{movie_id}/videos?api_key=848b8839c1d5acdc50f7dba88178e0c5&language=en-US"
-        //Category
+
+        //Movies category
         const val Action = 28
         const val Adventure = 12
         const val Animation = 16
@@ -26,5 +28,8 @@ class Constants {
         const val Thriller = 53
         const val War = 10752
         const val Western = 37
+
+        //Youtube player
+        const val api_key = "AIzaSyCOaDctaZro-cVF3PkJSjaJsqSjOTuKBjc"
     }
 }

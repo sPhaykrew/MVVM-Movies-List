@@ -1,11 +1,16 @@
 <resources>
     <string name="app_name">MVVM-Movies-List</string>
-    <string name="header_trending">Trending Now</string>
+    <string name="header_popular">Trending Now</string>
+    <string name="popular">Popular Movies</string>
     <string name="title">Title</string>
     <string name="Action">Action</string>
     <string name="Drama">Drama</string>
     <string name="Horror">Horror</string>
     <string name="Anime">Anime</string>
+    <string name="Movie_name">Movie name</string>
+    <string name="Overview">Overview</string>
+    <string name="release_date">Release date</string>
+    <string name="vote">Vote</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

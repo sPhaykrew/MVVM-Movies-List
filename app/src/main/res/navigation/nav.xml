@@ -25,7 +25,7 @@
             app:popUpTo="@id/mainFragment"
             app:popUpToInclusive="true" />
         <argument
-            android:name="movie"
+            android:name="data"
             app:argType="com.sakda.mvvm_movies_list.data.model.Movies" />
     </fragment>
 </navigation>

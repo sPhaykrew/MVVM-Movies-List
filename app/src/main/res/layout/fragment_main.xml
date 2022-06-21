@@ -20,13 +20,41 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <TextView
+                android:id="@+id/popular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/popular"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/white" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview_Highlight"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/popular" />
+
+            <ImageView
+                android:id="@+id/dividing"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:background="#38414f"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recyclerview_Highlight" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/Category_Action"
@@ -36,10 +64,10 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/Action"
                 android:textColor="@color/white"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerview_Highlight" />
+                app:layout_constraintTop_toBottomOf="@+id/dividing" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview_Action"
@@ -60,7 +88,7 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/Drama"
                 android:textColor="@color/white"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recyclerview_Action" />
@@ -85,7 +113,7 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/Horror"
                 android:textColor="@color/white"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recyclerview_Drama" />
@@ -109,7 +137,7 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/Anime"
                 android:textColor="@color/white"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recyclerview_Horror" />

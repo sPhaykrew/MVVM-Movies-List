@@ -105,7 +105,7 @@ class MovieViewModel(private val repository: Repository) : ViewModel() {
         }
     }
 
-    fun getVideos(movieID : String){
+    fun getVideos(movieID : String) : MutableLiveData<MovieVideosList>{
         viewModelScope.launch(Dispatchers.IO) {
             val response = repository.getVideo(movieID)
             withContext(Dispatchers.Main){
@@ -117,6 +117,7 @@ class MovieViewModel(private val repository: Repository) : ViewModel() {
                 }
             }
         }
+        return movieVideos
     }
 
     private fun onError(message: String) {
