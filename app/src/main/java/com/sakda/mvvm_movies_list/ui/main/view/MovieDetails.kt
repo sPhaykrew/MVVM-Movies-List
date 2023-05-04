@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+import com.sakda.mvvm_movies_list.R
 import com.sakda.mvvm_movies_list.data.model.MovieVideos
 import com.sakda.mvvm_movies_list.databinding.FragmentMovieDetailsBinding
 import com.sakda.mvvm_movies_list.ui.main.viewmodel.MovieViewModel
@@ -19,8 +21,8 @@ class MovieDetails : Fragment() {
 
     private val movieViewModel : MovieViewModel by activityViewModels()
     private val movie by navArgs<MovieDetailsArgs>()
-    private lateinit var fragmentMovieDetailsBinding : FragmentMovieDetailsBinding
     private var movieVideo = emptyList<MovieVideos>()
+    private lateinit var fragmentMovieDetailsBinding : FragmentMovieDetailsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,10 +30,17 @@ class MovieDetails : Fragment() {
     ): View {
         fragmentMovieDetailsBinding = FragmentMovieDetailsBinding.inflate(inflater,container,false)
 
+        initToolbar()
         getMovie()
         initYouTubePlayerView()
 
         return fragmentMovieDetailsBinding.root
+    }
+
+    private fun initToolbar(){
+        fragmentMovieDetailsBinding.toolbarSub.setNavigationOnClickListener {
+            findNavController().navigate(R.id.action_movie_details_to_mainFragment)
+        }
     }
 
     private fun initYouTubePlayerView() {
