@@ -23,15 +23,17 @@ class RecyclerViewAdapter_Highlight : RecyclerView.Adapter<RecyclerViewAdapter_H
     }
 
     override fun onBindViewHolder(holder: RecyclerViewAdapter_Highlight.ViewHolder, position: Int) {
-        holder.binding.ImageMovies.loadImage(BASE_IMAGE + item[position].backdrop_path)
-        var title = item[position].title
-        if(title.length > 30) {
-            title = title.substring(0,30) + "..."
-        }
-        holder.binding.Title.text = title
-        holder.binding.root.setOnClickListener {
-            val action = MainFragmentDirections.actionMainFragmentToMovieDetails(item[position])
-            Navigation.findNavController(it).navigate(action)
+        holder.binding.apply {
+            ImageMovies.loadImage(BASE_IMAGE + item[position].backdrop_path)
+            Title.text = item[position].title
+            root.setOnClickListener {
+                val action = MainFragmentDirections.actionMainFragmentToMovieDetails(item[position])
+                Navigation.findNavController(it).navigate(action)
+            }
+        }.also {
+            if (it.Title.text.length > 26){
+                it.Title.text = it.Title.text.substring(0,26) + "..."
+            }
         }
     }
 

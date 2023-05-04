@@ -25,12 +25,13 @@ class RecyclerViewAdapterMovies : RecyclerView.Adapter<RecyclerViewAdapterMovies
     }
 
     override fun onBindViewHolder(holder: RecyclerViewAdapterMovies.ViewHolder, position: Int) {
-        holder.binding.ImageMovies.loadImageResize(Constants.BASE_IMAGE + item[position].poster_path)
-        holder.binding.root.setOnClickListener {
-            val action = MainFragmentDirections.actionMainFragmentToMovieDetails(item[position])
-            Navigation.findNavController(it).navigate(action)
+        holder.binding.apply {
+            ImageMovies.loadImageResize(Constants.BASE_IMAGE + item[position].poster_path)
+            root.setOnClickListener {
+                val action = MainFragmentDirections.actionMainFragmentToMovieDetails(item[position])
+                Navigation.findNavController(it).navigate(action)
+            }
         }
-
     }
 
     override fun getItemCount(): Int = item.size

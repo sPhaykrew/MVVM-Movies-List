@@ -44,64 +44,60 @@ class MainFragment : Fragment() {
 
     private fun initRecyclerView() {
         recyclerViewAdapterHighlight = RecyclerViewAdapter_Highlight()
-        fragmentMainBinding.recyclerviewHighlight.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
-
         recyclerviewAdapterAction = RecyclerViewAdapterMovies()
-        fragmentMainBinding.recyclerviewAction.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
-
         recyclerviewAdapterDrama = RecyclerViewAdapterMovies()
-        fragmentMainBinding.recyclerviewDrama.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
-
         recyclerviewAdapterHorror = RecyclerViewAdapterMovies()
-        fragmentMainBinding.recyclerviewHorror.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
-
         recyclerviewAdapterAnime = RecyclerViewAdapterMovies()
-        fragmentMainBinding.recyclerviewAnime.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
+
+        fragmentMainBinding.apply {
+            recyclerviewHighlight.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
+            recyclerviewAction.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
+            recyclerviewDrama.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
+            recyclerviewHorror.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
+            recyclerviewAnime.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
     private fun observeData(){
-        movieViewModel.movies.observe(viewLifecycleOwner, Observer {
-            recyclerViewAdapterHighlight.setItem(it.movies)
-            fragmentMainBinding.recyclerviewHighlight.adapter = recyclerViewAdapterHighlight
-            recyclerViewAdapterHighlight.notifyDataSetChanged()
-        })
+        movieViewModel.apply {
+            movies.observe(viewLifecycleOwner, Observer {
+                recyclerViewAdapterHighlight.setItem(it.movies)
+                fragmentMainBinding.recyclerviewHighlight.adapter = recyclerViewAdapterHighlight
+            })
 
-        movieViewModel.moviesAction.observe(viewLifecycleOwner,Observer{
-            recyclerviewAdapterAction.setItem(it.movies)
-            fragmentMainBinding.recyclerviewAction.adapter = recyclerviewAdapterAction
-            recyclerviewAdapterAction.notifyDataSetChanged()
-        })
+            moviesAction.observe(viewLifecycleOwner,Observer{
+                recyclerviewAdapterAction.setItem(it.movies)
+                fragmentMainBinding.recyclerviewAction.adapter = recyclerviewAdapterAction
+            })
 
-        movieViewModel.moviesDrama.observe(viewLifecycleOwner,Observer{
-            recyclerviewAdapterDrama.setItem(it.movies)
-            fragmentMainBinding.recyclerviewDrama.adapter = recyclerviewAdapterDrama
-            recyclerviewAdapterDrama.notifyDataSetChanged()
-        })
+            moviesDrama.observe(viewLifecycleOwner,Observer{
+                recyclerviewAdapterDrama.setItem(it.movies)
+                fragmentMainBinding.recyclerviewDrama.adapter = recyclerviewAdapterDrama
+            })
 
-        movieViewModel.moviesHorror.observe(viewLifecycleOwner,Observer{
-            recyclerviewAdapterHorror.setItem(it.movies)
-            fragmentMainBinding.recyclerviewHorror.adapter = recyclerviewAdapterHorror
-            recyclerviewAdapterHorror.notifyDataSetChanged()
-        })
+            moviesHorror.observe(viewLifecycleOwner,Observer{
+                recyclerviewAdapterHorror.setItem(it.movies)
+                fragmentMainBinding.recyclerviewHorror.adapter = recyclerviewAdapterHorror
+            })
 
-        movieViewModel.moviesAnime.observe(viewLifecycleOwner,Observer{
-            recyclerviewAdapterAnime.setItem(it.movies)
-            fragmentMainBinding.recyclerviewAnime.adapter = recyclerviewAdapterAnime
-            recyclerviewAdapterAnime.notifyDataSetChanged()
-        })
+            moviesAnime.observe(viewLifecycleOwner,Observer{
+                recyclerviewAdapterAnime.setItem(it.movies)
+                fragmentMainBinding.recyclerviewAnime.adapter = recyclerviewAdapterAnime
+            })
 
-        movieViewModel.errorMessage.observe(viewLifecycleOwner, Observer {
-            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
-        })
+            errorMessage.observe(viewLifecycleOwner, Observer {
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            })
 
-        movieViewModel.loading.observe(viewLifecycleOwner, Observer {
-            if (it) {
-                fragmentMainBinding.progressBar.visibility = View.VISIBLE
-            } else {
-                fragmentMainBinding.progressBar.visibility = View.GONE
-            }
-        })
+            loading.observe(viewLifecycleOwner, Observer {
+                if (it) {
+                    fragmentMainBinding.progressBar.visibility = View.VISIBLE
+                } else {
+                    fragmentMainBinding.progressBar.visibility = View.GONE
+                }
+            })
+        }
     }
 
     private fun autoScroll(){
